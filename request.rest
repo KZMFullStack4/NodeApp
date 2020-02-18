@@ -1,0 +1,25 @@
+GET  http://localhost:3000/user/get-all
+
+
+###
+
+
+POST http://localhost:3000/user/add
+Content-Type: application/json
+
+{
+    "firstname":"Ali",
+    "lastname":"Saed"
+}
+###
+POST   http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "firstname":"Ali",
+    "lastname":"saed"
+}
+
+
+###
+DELETE http://localhost:3000/user/delete/9
