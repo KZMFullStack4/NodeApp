@@ -1,0 +1,128 @@
+﻿1-git config --global
+
+2-clear
+
+3-git config global user.name "saeidKazemi" (then press Enter to save userName for git config)
+
+4-git config global user.email "kaexznm@kdew.com"(then press Enter to save Email for git config)
+
+5-git config list (to see majority of git settings)
+
+6-git config --global --edit(this command is used when you have choosen a Editor enviroment at installation time)
+
+7-mkdir folderName(to create a new folder)
+
+8-git checkout 6latest
+
+8-pwd(to see where the folder has been saved)
+
+9-ls(to see all folders anf file in current directory)
+
+10-ls -a(to see all folders  and hidden folders in current directory)
+
+11-code . (to open all directories's files by vs Code if it's already installed on your machine)
+
+12-git help(to see the most commanly used command in git Scenario)
+
+13-git help config(to open a whole documentation of git commands guids)
+
+14-git add fileName(to put files into stage)/git add . (to move into stage all files)
+
+15-git status(to see all change (which file has beed edited ? which one is newer? and so on)).
+
+16-git commit -m "commit message" to change the status from stage to git history
+
+17-git log(to see history of changes)
+
+18-git commit -a -m "message"(do stage first and after that commit)
+
+19-git diff(to show which file has been modified)
+
+20-git checkout <6 latest character of commit hash>(to restore chenges to special commit)
+
+21-git checkout master(to undo again to before state);
+
+22-git reset(default id Mixed)
+
+23-git reset --soft()
+
+24-git reset --hard()
+
+25-git branch BRANCHNAME(to create new branch)
+
+26-git branch -a(to see all branches)
+
+27-git checkout BRANCHNAME(to move between branches)
+
+28-to delete a branch you should get out from them and place this command(git branch -d BRANCHNAME)
+
+29-(git checkout -b BRANCHNAME) to create and switch into new branch
+
+30-git merge BRANCHNAME(to merge a branch with other)
+
+
+31-git log -graph(to see log as a graph shape)
+
+32-git rm –cached –r .(to delete all files from stage folder)
+
+33-git log -p(to see all commits and all changes that just recently changed)
+
+34-git stash (to create a new stash)
+
+35-git stash list(to see all stashes);
+
+36-git stash save “your message here”;
+
+37-git touch .gitignore(to create git ignore file on your directory
+
+38-(to ignore a folder you sould use this syntax "FOLDERNAME/",to ignore special extention "*.pdf"=>this will ignore from tracking all files with .pdf extention
+39-to ignore all pdf files except a one file "!myPdf.pd"=>this will ignore all pdf files except  "myPdf
+40-git log --oneline(to see all commits in one line)
+41-git log --since="3 days ago"
+
+42-git log --until="3 days ago"
+
+43-git log --author="Saeid Kazemi"
+
+44-git log --grep="add"(to see all commits that include "add")
+
+45-git log -p COMMITID FILENAME(to see all changes in commits)
+
+46-git log --stat --summary (to see details of changes)
+
+47-git branch -m newNameForBranch(to change current branch name)
+
+48-git stash pop (to restore stashes ex:git stash apply stash@{1} with deleting them from stash array)
+
+49-git stash apply(to restore changes from stash into working directory without deleting from stahes list)
+
+50-git stash save "Message"(to save stash with specific name)	
+
+51-git stash --include-untracked(to save all untracked files)
+
+52-git stash list(to see all stashes)
+
+53-git stash drop stash@{1}(to delete stash)
+
+54-git stash clear ( to delete all stashes)	
+55-git stash show stash@{0} (to see all stash changes)
+56-git stash show -p stash@{0} (to see all stash changes with more details)
+
+
+///////////////To create remote repository on gitHub you should register first
+and then clone your repository into custom directory and it will created a git inial value in your directory ,
+if you wanna get pulling and pushing addresses you should use (git remote -v)
+git push -u origin BRANCHNAME(to save branch on remote repository)==> origin is remote Name on gitHub server	
+* git push origin BranchName (to push all content of current branch)
+
+*important : GIT VERSION CONTROL IS DITRIBUTED IT IS INDEPENDENT IT MEANS YOU CAN HAVE multiple remote repository on different hosts ,like 
+you can have a remote on github and also you can have on Gitlab and so on.
+to create diffrent remote repository you are gonna use :
+git remote add origin <Remote Name>, < HTTP address of remote that was created when you made them> 
+
+
+
+My gitHub:
+User:KZMFullStack4
+email:becomming.fullstack.4@gmail.com
+pass:saeidkazemi4FullStack
