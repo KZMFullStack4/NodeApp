@@ -6,24 +6,26 @@ const db = require("../config/database");
 
 const User = require("../models/user").User;
 
+const SECRET_KEY='Here is Secret key';
 const createUser = require("../models/user");
 const bCrypt = require('bcrypt');
+const jwt=require('jsonwebtoken');
 
 let result = createUser.createUser;
 
 console.log("Result of creation" + result);
 
-router.post("/add",async (req, res, next) => {
-  console.log("Here is Router ");
+router.post("/register",async (req, res, next) => {
 
-  console.log(JSON.stringify(req.body.firstname));
 
   const hashedPassword=await bCrypt.hash(req.body.lastname,10)
-  console.log("Hashed  pass : " +hashedPassword);
   
   User.create({
-    firstName: req.body.firstname,
-    lastName: hashedPassword
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    username:req.body.username,
+    password:hashedPassword
+
   })
     .then(user => {
       // Send created user to client
@@ -138,17 +140,21 @@ module.exports = router;
 
 router.post('/login', async (req,res,next)=>{
 
-  console.log("Here is User Array : " +this.myUser);
   
-  const user =this.myUser.find(find=>find.firstName==req.body.firstname);
-  console.log("\nFound : " +JSON.stringify(user));
+  const user =User.findAll({
+    where:{
+      username:req.body.username
+    }
+  });
   if(user==null){
     return res.status(400).send("User Not Found !");
   }
       try{
 
-        if(await bCrypt.compare(req.body.lastname,user.lastName)){
-          res.send("Success login ")
+        if(await bCrypt.compare(req.body.password,user.password)){
+          const token = jwt.sign(user, SECRET_KEY, { algorithm: 'HS512'})
+          res.sendStatus(200).send({token:token,dateCreated :new Date().toString()});
+
         }else{
           res.send("Not Allowed ")
         }

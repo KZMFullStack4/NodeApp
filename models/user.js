@@ -11,13 +11,16 @@ const User = db.define(
       primaryKey: true,
       autoIncrement: true
     },
-    firstName: {
+    firstname: {
       type: Sequelize.STRING,
       field: "first_name" // Will result in an attribute that is firstName when user facing but first_name in the database
     },
-    lastName: {
+    lastname: {
       type: Sequelize.STRING
-    }
+    },
+    username:Sequelize.STRING,
+    password:Sequelize.STRING
+    
   },
   {
     createdAt: false,
