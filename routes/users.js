@@ -1,19 +1,17 @@
 const express = require("express");
-
 const router = express.Router();
-
+require('dotenv').config();
 const db = require("../config/database");
-
 const User = require("../models/user").User;
-
 const SECRET_KEY = "SECRET_KEY IS HERE FOR AUTHORIZATION PURPOSES";
 const createUser = require("../models/user");
 const bCrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 let result = createUser.createUser;
 
 console.log("Result of creation" + result);
+
+
 
 router.post("/register", async (req, res, next) => {
   const hashedPassword = await bCrypt.hash(req.body.password, 10);
@@ -38,7 +36,6 @@ router.delete("/delete/:id", (req, res, next) => {
   User.destroy({
     where: {
       id: req.params.id
-      // criteria
     }
   })
     .then(function() {
@@ -47,22 +44,7 @@ router.delete("/delete/:id", (req, res, next) => {
     .cath(err => {
       console.log("err");
     });
-
-  // User.destroy({ where: { id: req.params.id } })
-  //   .then(function() {
-  //     console.log("Deleted"); // { '0': 0 } - why not same as in bulkUpdate?
-  //   })
-  //   .cath(err => {
-  //     console.log("err");
-  //   });
 });
-
-// let arrowFun = (a,b)=>{
-
-//   return a+b;
-// }
-
-// let finalR =arrowFun(1,1);
 
 router.post("/protected-2", verifyToken, (req, res) => {
   console.log("Here protected ");
@@ -109,12 +91,13 @@ function verifyToken(req, res, next) {
       if (!err) {
         req.main = data;
         next();
-      }else{
-
-        res.send("Token invalid")
+      } else {
+        res.json({
+          error: true,
+          message: "Token invalid"
+        });
       }
     });
-
   } else {
     //Forbidden
     res.sendStatus(403);
@@ -184,10 +167,13 @@ router.get("/get-special/:id", (req, res, next) => {
 
 module.exports = router;
 
+const mailSender = require("../utils/mailsender");
+
 router.post("/login", async (req, res, next) => {
   console.log("Body : " + JSON.stringify(req.body));
 
   let encryptedPass;
+
   User.findAll({
     where: {
       username: req.body.username
@@ -207,6 +193,7 @@ router.post("/login", async (req, res, next) => {
         expiresIn: "1h"
       };
 
+      
       bCrypt
         .compare(req.body.password, encryptedPass)
         .then(q => {
@@ -214,6 +201,14 @@ router.post("/login", async (req, res, next) => {
             console.log("Password Okay !" + q);
             let token = jwt.sign({ data: response[0] }, SECRET_KEY, options);
             console.log("Token :" + token);
+          
+            se(message, (error, info) => {
+              if (!error) {
+                console.log("Mail Sent : " + JSON.stringify(info));
+              } else {
+                console.log("Mail does not send : " + error);
+              }
+            });
             res.send({ token: token, dateCreated: new Date().toString() });
           } else {
             res.send("Username Password mismatch ! ");
