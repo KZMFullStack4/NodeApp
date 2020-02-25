@@ -18,7 +18,7 @@ app.use('/sample',(re,res)=>{
 //Database 
 
 const sync=()=>{
-    return db.sync();
+    return db.sync();//{force:true}
 }
 
 sync().then(()=>{

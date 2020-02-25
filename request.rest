@@ -4,23 +4,36 @@ GET  http://localhost:3000/user/get-all
 ###
 
 
-POST http://localhost:3000/user/add
+POST http://localhost:3000/user/register
 Content-Type: application/json
 
 {
-    "firstname":"Ali",
-    "lastname":"Saed"
+    "firstname":"hghjf",
+    "lastname":"fghfgh",
+    "username":"s@45GfhfghfFHG45",
+    "password":"ghfghfg"
 }
 ###
 POST   http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    
-    "firstname":"Ali",
-    "lastname":"saed"
+    "username":"s@45GfhfghfFHG45",
+    "password":"ghfghfg"
 }
 
+###
+POST http://localhost:3000/user/token-verify
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyMCwiZmlyc3RuYW1lIjoiaGdoamYiLCJsYXN0bmFtZSI6ImZnaGZnaCIsInVzZXJuYW1lIjoic0A0NUdmaGZnaGZGSEc0NSIsInBhc3N3b3JkIjoiJDJiJDEwJHV0TVRJTW80SlFYbXJTUEl5WWlvWWVQcXZHeUlvOE5oMTU4WnE1RlJOLno5cDdDVVo2a0cyIn0sImlhdCI6MTU4MjYxODY0MiwiZXhwIjoxNTgyNjIyMjQyfQ.KPEn9-VkYUXKShUc3oRrfS1za1XYpD4tQdOMb9Ed2Yw
+###
+DELETE http://localhost:3000/user/delete/17
 
 ###
-DELETE http://localhost:3000/user/delete/9
+POST  http://localhost:3000/user/protected-posts
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxOSwiZmlyc3RuYW1lIjoiRlRHRyIsImxhc3RuYW1lIjoiQmVoYnNGR0hGR3Nvb2RpIiwidXNlcm5hbWUiOiJzQDQ1R0ZIRzQ1IiwicGFzc3dvcmQiOiIkMmIkMTAkN0MvYzhqTDN5bjNWeEM5ckE3aUFBLmlPSnR3Q2Z0Ymw2c0hhRTJNTUFPeEJ5VXJJM0FUZkMifSwiaWF0IjoxNTgyNjE2OTc2LCJleHAiOjE1ODI2MjA1NzZ9.0NsM7sUvBDhmJVgWe7ctEEePYTXzUgtXSbI5y1x0eZ0
+###
+POST  http://localhost:3000/user/protected-2
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyMCwiZmlyc3RuYW1lIjoiaGdoamYiLCJsYXN0bmFtZSI6ImZnaGZnaCIsInVzZXJuYW1lIjoic0A0NUdmaGZnaGZGSEc0NSIsInBhc3N3b3JkIjoiJDJiJDEwJHV0TVRJTW80SlFYbXJTUEl5WWlvWWVQcXZHeUlvOE5oMTU4WnE1RlJOLno5cDdDVVo2a0cyIn0sImlhdCI6MTU4MjYxODY0MiwiZXhwIjoxNTgyNjIyMjQyfQ.KPEn9-VkYUXKShUc3oRrfS1za1XYpD4tQdOMb9Ed2Yw
