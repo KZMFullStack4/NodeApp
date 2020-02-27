@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-require('dotenv').config();
+require("dotenv").config();
 const db = require("../config/database");
 const User = require("../models/user").User;
 const SECRET_KEY = "SECRET_KEY IS HERE FOR AUTHORIZATION PURPOSES";
@@ -11,7 +11,7 @@ let result = createUser.createUser;
 
 console.log("Result of creation" + result);
 
-
+const mailSender = require("../utils/mailsender");
 
 router.post("/register", async (req, res, next) => {
   const hashedPassword = await bCrypt.hash(req.body.password, 10);
@@ -48,7 +48,6 @@ router.delete("/delete/:id", (req, res, next) => {
 
 router.post("/protected-2", verifyToken, (req, res) => {
   console.log("Here protected ");
-
   res.json({
     verified: true,
     message: "Here is protected 2 ",
@@ -57,9 +56,10 @@ router.post("/protected-2", verifyToken, (req, res) => {
   console.log("Main response : " + req.main);
 });
 
+
+
 router.post("/protected-posts", verifyToken, anotherHandler, (req, res) => {
   console.log("Here protected ");
-
   res.json({
     verified: true,
     message: "message here ",
@@ -72,7 +72,6 @@ router.post("/protected-posts", verifyToken, anotherHandler, (req, res) => {
   });
   console.log("tokenInNext: " + req.token);
 });
-
 //Serial midleware functions here
 function anotherHandler(req, res, next) {
   if (typeof req.token !== "undefined") {
@@ -83,6 +82,8 @@ function anotherHandler(req, res, next) {
     res.send("Error in another handler function");
   }
 }
+
+
 
 function verifyToken(req, res, next) {
   let token = req.headers.authorization;
@@ -103,6 +104,8 @@ function verifyToken(req, res, next) {
     res.sendStatus(403);
   }
 }
+
+
 
 let myUser = [];
 router.get("/get-all", async (req, res, next) => {
@@ -141,6 +144,8 @@ router.put("/update/:id", function(req, res, next) {
     });
 });
 
+
+
 router.get("/get-one/:id", (req, res, next) => {
   User.findByPk(req.params.id)
     .then(data => {
@@ -149,6 +154,10 @@ router.get("/get-one/:id", (req, res, next) => {
     })
     .catch(err => console.log("Error : " + err));
 });
+
+
+
+
 
 router.get("/get-special/:id", (req, res, next) => {
   console.log("Here is rest ");
@@ -165,15 +174,22 @@ router.get("/get-special/:id", (req, res, next) => {
     .catch(err => console.log("Error : " + err));
 });
 
+
+
 module.exports = router;
 
 const mailSender = require("../utils/mailsender");
+
+
+
+
+
+
 
 router.post("/login", async (req, res, next) => {
   console.log("Body : " + JSON.stringify(req.body));
 
   let encryptedPass;
-
   User.findAll({
     where: {
       username: req.body.username
@@ -183,32 +199,34 @@ router.post("/login", async (req, res, next) => {
       if (response == null || response == undefined || !response) {
         res.status(400).send("User Not Found !");
       }
-      // console.log(res[0].dataValues);
-      console.log("Response : " + JSON.stringify(response[0]));
-      console.log("Response username : " + response[0].username);
 
       encryptedPass = response[0].password;
-      console.log("Encrypted pass‌:" + encryptedPass);
       let options = {
         expiresIn: "1h"
       };
-
-      
+      let html =
+        "<h4 style='color:red;'>You've successfully logged in to application</h4>";
       bCrypt
         .compare(req.body.password, encryptedPass)
         .then(q => {
           if (q) {
-            console.log("Password Okay !" + q);
             let token = jwt.sign({ data: response[0] }, SECRET_KEY, options);
-            console.log("Token :" + token);
-          
-            se(message, (error, info) => {
-              if (!error) {
-                console.log("Mail Sent : " + JSON.stringify(info));
-              } else {
-                console.log("Mail does not send : " + error);
-              }
-            });
+            mailSender(
+              "becomming.fullstack.4@gmail.com",
+              "saeidkazemi78java@gmail.com",
+              "Kazemi Node app says ",
+              "You've logged in to Kazemi node application !" +
+                "\n Your Username : " +
+                req.body.username +
+                "\n Password :" +
+                req.body.password
+            )
+              .then(result => {
+                console.log("Sent mail succed! " + JSON.stringify(result));
+              })
+              .catch(err => {
+                console.log("Error mail sender : " + err);
+              });
             res.send({ token: token, dateCreated: new Date().toString() });
           } else {
             res.send("Username Password mismatch ! ");
@@ -223,6 +241,11 @@ router.post("/login", async (req, res, next) => {
       res.send("Error :  " + err);
     });
 });
+
+
+
+
+
 
 router.post("/token-verify", (req, res, next) => {
   if (req.headers && req.headers.authorization) {
@@ -241,3 +264,6 @@ router.post("/token-verify", (req, res, next) => {
     });
   }
 });
+
+
+

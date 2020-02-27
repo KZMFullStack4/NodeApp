@@ -1,0 +1,16 @@
+Backend: git clone secretariat@185.105.237.62:/home/secretariat/secretariat_project/backend
+FrontEnd:git clone secretariat@185.105.237.62:/home/secretariat/secretariat_project/frontend
+Zendegi_backend:git clone secretariat@185.105.237.62:/home/secretariat/zendegi_backend
+
+Persoline:git clone payman@185.105.237.62:/home/payman/backend_copy
+Pass: Hte0w]3+aCp5
+mvn install:install-file -Dfile=<'C:\Users\Kazem\.m2\repository\ir\tagavar\util\general_util\1.0'> -DpomFile=<'E:\All Projects\Secretariat\SecretariatBackend\backend'>
+mvn install:install-file -Dfile=C:\Users\Kazem\.m2\repository\ir\tagavar\util\general_util\1.0 -DpomFile=E:\All Projects\Secretariat\SecretariatBackend\backend
+
+mvn install:install-file -Dfile=C:\Users\Kazem\.m2\repository\ir\tagavar\util\general_util\1.0 -DgroupId=ir.tagavar.util -DartifactId=general_util -Dversion=1.0 -Dpackaging=jar
+
+new email created at 6Esfand 98  :saeidkazemi78java@gmail.com
+pass :09914294120
+
+
+

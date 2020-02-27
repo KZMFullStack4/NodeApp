@@ -11,22 +11,22 @@ let transport = nodemailer.createTransport({
 
 const myMessage = {
   from: "becomming.fullstack.4@gmail.com",
-  to: "wahidwex@gmail.com",
+  to: "becomming.fullstack.4@gmail.com",
   subject: "Saeed mail sender sample from Node",
   text: "Have the most fun you can in a car. Get your Tesla today!"
 };
 
-function sendMail(message,callback){
-  myMessage.text=message;
-    transport.sendMail(myMessage,callback);
+async function sendMail(from,to,subject,text,html){
+  let emailUtil={
+    from:from,
+    to:to,
+    subject:subject,
+    text:text,
+    html:html
+  }
+    return transport.sendMail(emailUtil);
 }
 
-transport.sendMail(message, (err, info) => {
-  if (err) {
-    console.log("Error Email: " + err);
-  } else {
-    console.log(info);
-  }
-});
+
 
 module.exports=sendMail;

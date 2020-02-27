@@ -8,24 +8,19 @@ POST http://localhost:3000/user/register
 Content-Type: application/json
 
 {
-    "firstname":"hghjf",
-    "lastname":"fghfgh",
-    "username":"s@45GfhfghfFHG45",
-    "password":"ghfghfg"
+    "firstname":"Saeed",
+    "lastname":"Kazemi",
+    "username":"s@sfdsf",
+    "password":"12dd0122@620051"
 }
 ###
 POST   http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "username":"s@45GfhfghfFHG45",
-    "password":"ghfghfg"
+    "username":"s@sfdsf",
+    "password":"12dd0122@620051"
 }
-
-###
-POSt http://localhost:8080/io-cardex/apply-io-cardex/20/true
-Content-Type: application/json
-
 
 
 
@@ -33,7 +28,7 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/user/token-verify
 Content-Type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyMCwiZmlyc3RuYW1lIjoiaGdoamYiLCJsYXN0bmFtZSI6ImZnaGZnaCIsInVzZXJuYW1lIjoic0A0NUdmaGZnaGZGSEc0NSIsInBhc3N3b3JkIjoiJDJiJDEwJHV0TVRJTW80SlFYbXJTUEl5WWlvWWVQcXZHeUlvOE5oMTU4WnE1RlJOLno5cDdDVVo2a0cyIn0sImlhdCI6MTU4MjYxODY0MiwiZXhwIjoxNTgyNjIyMjQyfQ.KPEn9-VkYUXKShUc3oRrfS1za1XYpD4tQdOMb9Ed2Yw
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyMiwiZmlyc3RuYW1lIjoiU2FlZWQiLCJsYXN0bmFtZSI6IkthemVtaSIsInVzZXJuYW1lIjoic0BzZmRzZiIsInBhc3N3b3JkIjoiJDJiJDEwJEdyQ0dnZ2ZJZndyS3NKQXVNVGhFNk9iUnZXeFN4RWN2TlRMSmhzUm5aZHVrL3F6VS9iYnE2In0sImlhdCI6MTU4MjY0MDIwNiwiZXhwIjoxNTgyNjQzODA2fQ._w-MhUnqzc6TcoTxLsRqG-6LIDW1GIXmuQDSmKWRLaA
 ###
 DELETE http://localhost:3000/user/delete/17
 
